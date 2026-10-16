@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>[hidden]{display:none!important}body{margin:0}</style>
-</head>
-<body>
+<meta name="description" content="2026 경력/전문계약 입사자 리텐션 과정(11.19~20, KT&amp;G 미래인재원) 입과 안내 — 시간표, 준비사항, 오시는 길">
+<meta property="og:title" content="2026 경력/전문계약 입사자 리텐션 과정">
+<meta property="og:description" content="2026 경력/전문계약 입사자 리텐션 과정(11.19~20, KT&amp;G 미래인재원) 입과 안내 — 시간표, 준비사항, 오시는 길">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex,nofollow">
+<style>[hidden]{display:none!important}body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>경력입사자 리텐션과정</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
@@ -336,6 +338,35 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
 .floor-box svg .fc text{font-family:var(--f-body);font-size:12.5px;font-weight:600;fill:var(--muted)}
 .floor-box svg .wall{fill:none;stroke:var(--fg);stroke-width:2.5;opacity:.7}
 .floor-box svg .ent{font-family:var(--f-body);font-size:13px;font-weight:700;fill:var(--accent)}
+.flow-m{display:none}
+@media (max-width:1000px){
+  .map-wrap{display:none}
+  .flow-m{display:grid;gap:12px}
+  .fm{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:10px}
+  .fm-head b{display:inline-block;font-size:14px;font-weight:700;color:#fff;background:var(--brand);border-radius:6px;padding:2px 10px;margin-right:8px}
+  :root[data-theme="dark"] .fm-head b{color:#16171a}
+  .fm-head small{font-size:13px;color:var(--muted)}
+  .fm-item{display:grid;gap:6px;padding-top:10px;border-top:1px dashed var(--line)}
+  .fm-what b{display:block;font-weight:600;color:var(--brand)}
+  .fm-what span{font-size:13.5px}
+  .fm .sess{flex-wrap:wrap}
+  .fm .sess span{white-space:normal}
+}
+@media (max-width:1000px) and (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fm-head b{color:#16171a}}
+@media (max-width:560px){
+  .chip{font-size:12px;padding:3px 9px}
+  .chips .chip:nth-child(n+3){display:none}
+  .logo{height:30px}
+  .stores{grid-template-columns:1fr 1fr}
+  .store{padding:7px 9px;gap:7px}
+  .store span b{font-size:13px;white-space:nowrap}
+  .mh,.mr{grid-template-columns:40px repeat(3,minmax(0,1fr));gap:5px}
+  .mr span{font-size:10.5px;letter-spacing:-.03em;height:44px}
+  .mr>b{font-size:12.5px}
+  .mapbox svg{min-width:0 !important}
+  .att-times span{font-size:12px}
+  #about .goal .g{flex-direction:column;align-items:flex-start;gap:6px}
+}
 /* 데스크톱: 모든 문장 한 줄 고정 */
 @media (min-width:1001px){
   h1,.goal p,.strip b,.strip small,dl.facts dd,dl.facts dd small,ul.plain li>span,.check small,.check strong,
@@ -395,7 +426,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
 @media (prefers-reduced-motion:no-preference){section.panel:not([hidden]){animation:fade .18s ease-out}
   @keyframes fade{from{opacity:.4}to{opacity:1}}}
 </style>
-
+</head>
+<body>
 <div class="shell">
   <header>
     <div class="head-text">
@@ -443,6 +475,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
         </div>
         <div class="card map">
           <h2>🧭 교육 방향 · 주요 내용</h2>
+          <div class="flow-m" id="flowM"></div>
           <div class="map-wrap">
             <table class="flow">
               <colgroup><col style="width:21%"><col style="width:31%"><col></colgroup>
@@ -914,6 +947,17 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
     document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!modal.hidden)close(); });
   })();
 
+  // ---- 교육 방향 표를 휴대폰용 카드로 ----
+  (function(){
+    var out=document.getElementById("flowM"); if(!out)return; var html="", open=false;
+    [].forEach.call(document.querySelectorAll("table.flow tbody tr"),function(tr){
+      var dir=tr.querySelector("td.dir"), what=tr.querySelector("td.what"), tds=tr.querySelectorAll("td"), sess=tds[tds.length-1];
+      if(dir){ if(open)html+='</section>'; html+='<section class="fm"><div class="fm-head">'+dir.innerHTML+'</div>'; open=true; }
+      html+='<div class="fm-item"><div class="fm-what">'+what.innerHTML+'</div>'+sess.innerHTML+'</div>';
+    });
+    if(open)html+='</section>'; out.innerHTML=html;
+  })();
+
   // ---- 모바일 일차 전환 ----
   var dbtn=[].slice.call(document.querySelectorAll(".daytabs button"));
   function pickDay(d){document.getElementById("tt").dataset.show=d;dbtn.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.day==d);});
@@ -922,6 +966,5 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
   pickDay(today===dateOf[2]?2:1);
 })();
 </script>
-
 </body>
 </html>
