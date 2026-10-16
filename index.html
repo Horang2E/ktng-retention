@@ -322,6 +322,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
 .mr>b{font-size:13.5px;font-weight:600;color:var(--fg);display:flex;align-items:center}
 .mr span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;background:var(--brand-soft);color:var(--brand-ink);border-radius:8px;padding:0 4px;height:48px;box-sizing:border-box;
   font-family:var(--f-num);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mr .t{display:flex;gap:4px;font-style:normal}
+.mr .t i{font-style:normal}
 .mr span small{font-family:var(--f-body);font-size:11.5px;font-weight:500;color:var(--muted)}
 .mr span.off{background:transparent;border:1.5px dashed var(--line);color:var(--muted);font-weight:400}
 @media (max-width:400px){.mh,.mr{grid-template-columns:44px repeat(3,minmax(0,1fr))}.mr span{font-size:11.5px}}
@@ -361,7 +363,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
   .store{padding:7px 9px;gap:7px}
   .store span b{font-size:13px;white-space:nowrap}
   .mh,.mr{grid-template-columns:40px repeat(3,minmax(0,1fr));gap:5px}
-  .mr span{font-size:10.5px;letter-spacing:-.03em;height:44px}
+  .mr span{font-size:12px;letter-spacing:0;height:52px}
+  .mr .t{flex-direction:column;align-items:center;gap:0;line-height:1.25}
   .mr>b{font-size:12.5px}
   .mapbox svg{min-width:0 !important}
   .att-times span{font-size:12px}
@@ -559,8 +562,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
             </dl>
             <div class="meals" role="table" aria-label="식사 시간">
               <div class="mh" role="row"><span></span><b>조식</b><b>중식</b><b>석식</b></div>
-              <div class="mr" role="row"><b>1일차</b><span class="off">–</span><span>12:00 – 13:00</span><span>18:00 – 19:00<small>간담회</small></span></div>
-              <div class="mr" role="row"><b>2일차</b><span>07:30 – 08:30</span><span>12:00 – 13:00</span><span class="off">–</span></div>
+              <div class="mr" role="row"><b>1일차</b><span class="off">–</span><span><em class="t"><i>12:00</i><i>~13:00</i></em></span><span><em class="t"><i>18:00</i><i>~19:00</i></em><small>간담회</small></span></div>
+              <div class="mr" role="row"><b>2일차</b><span><em class="t"><i>07:30</i><i>~08:30</i></em></span><span><em class="t"><i>12:00</i><i>~13:00</i></em></span><span class="off">–</span></div>
             </div>
             <p class="items-note">식당의 원활한 운영을 위해 식사를 먼저 하신 뒤 다른 일정을 해 주세요.</p>
           </div>
