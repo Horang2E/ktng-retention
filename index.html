@@ -558,7 +558,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
           <div class="card">
             <h2>숙박 · 식사</h2>
             <dl class="facts">
-              <dt>숙박</dt><dd>1인 1실 제공<small>11월 19일(목) 1박 · 숙소동</small><button type="button" class="floor-btn" id="floorOpen">숙소 1·2층 안내도 보기</button></dd>
+              <dt>숙박</dt><dd>1인 1실 · 숙소동 1층 101~130호<small>11월 19일(목) 1박</small><button type="button" class="floor-btn" id="floorOpen">숙소 1·2층 안내도 보기</button></dd>
             </dl>
             <div class="meals" role="table" aria-label="식사 시간">
               <div class="mh" role="row"><span></span><b>조식</b><b>중식</b><b>석식</b></div>
@@ -577,10 +577,10 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
         <div class="card route">
           <h2>찾아오는 길</h2>
           <ol class="route-flow">
-            <li><b>정문</b>벚꽃길 71 · 택시 하차</li>
+            <li><b>정문</b>대덕구 벚꽃길 71</li>
             <li><b>출입</b>사원증 제시</li>
             <li><b>주차</b>정문 근처 주차장</li>
-            <li><b>이동</b>주차장 지나 우회전</li>
+            <li><b>이동</b>주차장 지나 좌회전</li>
             <li class="goal-step"><b>도착</b>인재원 B동 106호</li>
           </ol>
           <span class="route-sub">신탄진역 도보 15분</span>
@@ -589,7 +589,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
         <div class="card mapcard">
           <div class="map-head"><h2>강의장 찾아오는 길</h2><span class="hint">건물에 마우스를 올리면 안내가 나와요</span><button type="button" class="zoom-btn" id="zoomOpen"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>크게 보기</button></div>
           <div class="mapbox" id="mapbox">
-            <svg viewBox="0 0 780 660" role="img" aria-label="정문(택시 하차 지점)에서 내려와 주차장 아래에서 오른쪽으로 꺾은 뒤, 다시 내려와 왼쪽의 인재원 B동 106호 강의장으로. 왼쪽에 대전공장, 오른쪽 위에 주차장, 오른쪽 아래에 인재원 A동과 연결된 숙소동">
+            <svg viewBox="0 0 780 660" role="img" aria-label="정문으로 들어와 직진, 주차장을 지나 좌회전한 뒤 인재원 B동 106호 강의장으로. 왼쪽에 대전공장, 오른쪽 위에 주차장, 오른쪽 아래에 인재원 A동과 연결된 숙소동">
               <defs>
                 <marker id="arw" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
                   <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
@@ -599,7 +599,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
               <path d="M380 112 V236 H530 V540 H470" fill="none" stroke="var(--lot)" stroke-width="40" stroke-linejoin="round"/>
               <path d="M380 122 V236 H530 V540 H474" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 10" marker-end="url(#arw)"/>
               <!-- 정문 -->
-              <g class="hot" tabindex="0" data-title="대전공장 정문" data-body="대전광역시 대덕구 벚꽃길 71|택시는 정문 앞에서 하차 · 신탄진역 도보 약 15분|차단기에서 사원증을 보여주고 교육 참석차 왔다고 말하면 통과"><g transform="translate(283 6)">
+              <g class="hot" tabindex="0" data-title="대전공장 정문" data-body="대전광역시 대덕구 벚꽃길 71|신탄진역 도보 약 15분|차단기에서 사원증을 보여주고 교육 참석차 왔다고 말하면 통과"><g transform="translate(283 6)">
                 <rect class="hit" x="30" y="6" width="134" height="104" rx="12"/>
                 <rect x="48" y="40" width="26" height="30" rx="3" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
                 <path d="M44 42 L61 32 L78 42 z" fill="var(--muted)"/>
@@ -608,7 +608,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
                 <line x1="74" y1="56" x2="146" y2="50" stroke="#fff" stroke-width="6" stroke-dasharray="9 9" stroke-dashoffset="-4"/>
                 <circle cx="76" cy="56" r="4.5" fill="var(--fg)"/>
                 <text x="110" y="30" text-anchor="middle" class="m-lb">정문</text>
-              <rect x="57" y="84" width="80" height="20" rx="10" fill="#ffd54f"/><text x="97" y="98" text-anchor="middle" class="m-taxi">택시 하차</text></g></g>
+              </g></g>
               <!-- 주차장 -->
               <g class="hot" tabindex="0" data-title="주차장 (권장)" data-body="정문 근처 주차장을 이용해 주세요|인재원 뒤편 주차 공간은 혼잡이 예상됩니다"><g transform="translate(270 40)">
                 <rect x="210" y="26" width="280" height="118" rx="14" fill="var(--lot)" stroke="var(--line)" stroke-width="1.5"/>
@@ -663,7 +663,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
               </g></g>
               <rect x="663" y="576" width="24" height="18" fill="var(--lot)" stroke="var(--line)" stroke-width="1.2"/>
               <!-- 숙소동 -->
-              <g class="hot" tabindex="0" data-title="숙소동" data-body="11월 19일(목) 1박 · A동과 연결|객실 배정은 추후 안내"><g transform="translate(240 110)">
+              <g class="hot" tabindex="0" data-title="숙소동" data-body="11월 19일(목) 1박 · A동과 연결|우리 과정 객실: 1층 101~130호 (1인 1실)"><g transform="translate(240 110)">
                 <rect x="372" y="484" width="126" height="58" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
                 <g transform="translate(386 498)">
                   <rect x="0" y="0" width="5" height="30" rx="2" fill="var(--accent)"/>
@@ -691,8 +691,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
               <dt>주소</dt><dd>대전광역시 대덕구 벚꽃길 71<small>대전공장 정문</small></dd>
               <dt>출입</dt><dd>정문 차단기에서 사원증 제시<small>교육 참석차 왔다고 말하면 통과</small></dd>
               <dt>주차</dt><dd>정문 근처 주차장 이용 권장<small>인재원 뒤편은 혼잡 예상</small></dd>
-              <dt>대중교통</dt><dd>신탄진역에서 도보 약 15분<small>택시는 정문 앞에서 하차</small></dd>
-              <dt>숙소</dt><dd>숙소동 (인재원 A동과 연결)<small>객실 배정 추후 안내</small></dd>
+              <dt>대중교통</dt><dd>신탄진역에서 도보 약 15분</dd>
+              <dt>숙소</dt><dd>숙소동 1층 101~130호 (1인 1실)<small>인재원 A동과 연결</small></dd>
               <dt>견학</dt><dd>대전공장 (CC/NGP)<small>11월 20일(금) 10:00 ~ 12:00</small></dd>
             </dl>
           </div>
@@ -898,7 +898,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
 
   // ---- 숙소동 안내도 ----
   // 우리 과정 객실: 배정되면 번호를 넣으세요. 예) ["101","102","201"]
-  var MY_ROOMS = [];
+  var MY_ROOMS = []; for(var rn=101; rn<=130; rn++) MY_ROOMS.push(String(rn));
+  var MY_ROOMS_LABEL = "101~130호";
   (function(){
     function rooms(list,x0,y,w,h){ return list.map(function(n,i){ return [n,x0+i*w,y,w,h]; }); }
     function col(list,x,y0,w,h){ return list.map(function(n,i){ return [n,x,y0+i*h,w,h]; }); }
@@ -927,7 +928,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
     };
     function esc2(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
     function draw(n){
-      var f=F[n], h='<svg viewBox="0 0 1000 '+(f.ent?510:480)+'" role="img" aria-label="숙소동 '+n+'층 안내도'+(MY_ROOMS.length?', 우리 과정 객실 '+MY_ROOMS.join(', ')+'호':'')+'">';
+      var f=F[n], h='<svg viewBox="0 0 1000 '+(f.ent?510:480)+'" role="img" aria-label="숙소동 '+n+'층 안내도'+(', 우리 과정 객실은 1층 '+MY_ROOMS_LABEL)+'">';
       h+='<rect class="wall" x="18" y="18" width="964" height="444" rx="4"/>';
       f.fac.forEach(function(r){ h+='<g class="fc"><rect x="'+r[1]+'" y="'+r[2]+'" width="'+r[3]+'" height="'+r[4]+'" rx="4"/><text x="'+(r[1]+r[3]/2)+'" y="'+(r[2]+r[4]/2+4)+'" text-anchor="middle">'+(r[3]<40?'':esc2(r[0]))+'</text></g>'; });
       f.rooms.forEach(function(r){ var mine=MY_ROOMS.indexOf(r[0])>=0;
@@ -940,7 +941,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
     var tabs=[].slice.call(modal.querySelectorAll("[data-floor]"));
     function pick(n){ box.innerHTML=draw(n); tabs.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.floor==n);});
       var mine=MY_ROOMS.filter(function(r){return r.charAt(0)==String(n);});
-      note.textContent = MY_ROOMS.length ? (mine.length? '우리 과정 객실 '+mine.join('·')+'호':'이 층에는 우리 과정 객실이 없어요') : '객실 배정 후 우리 과정 객실을 표시해 드립니다'; }
+      note.textContent = MY_ROOMS.length ? (mine.length? '우리 과정 객실: 1층 '+MY_ROOMS_LABEL:'우리 과정 객실은 1층(101~130호)이에요') : '객실 배정 후 우리 과정 객실을 표시해 드립니다'; }
     tabs.forEach(function(b){ b.addEventListener("click",function(e){e.stopPropagation();pick(b.dataset.floor);}); });
     function open(e){ if(e)e.stopPropagation(); back=document.activeElement; var first=MY_ROOMS.length?MY_ROOMS[0].charAt(0):"1"; pick(first==="2"?2:1); modal.hidden=false; document.getElementById("floorClose").focus(); }
     function close(){ modal.hidden=true; if(back&&back.focus)back.focus(); }
