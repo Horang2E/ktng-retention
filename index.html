@@ -371,6 +371,15 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
   .att-times span{font-size:12px}
   #about .goal .g{flex-direction:column;align-items:flex-start;gap:6px}
 }
+.op{height:100%;display:flex;flex-direction:column;gap:12px;min-height:0}
+.op-stage{position:relative;flex:1;min-height:0;background:#0b0c0e;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.op-stage video{width:100%;height:100%;object-fit:contain;display:block;background:#0b0c0e}
+.op-sound{position:absolute;top:14px;right:14px;font:inherit;font-size:13px;font-weight:600;color:#fff;background:rgb(0 0 0 / .55);border:1px solid rgb(255 255 255 / .25);border-radius:999px;padding:6px 14px;cursor:pointer;backdrop-filter:blur(4px)}
+.op-sound:focus-visible,.op-next:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.op-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.op-cap{font-size:14px;color:var(--muted)}
+.op-next{font:inherit;font-size:14px;font-weight:700;color:#fff;background:var(--accent);border:0;border-radius:10px;padding:9px 18px;cursor:pointer}
+@media (max-width:1000px){.op{height:auto}.op-stage{flex:none;aspect-ratio:16/9;max-width:100%}}
 /* 데스크톱: 모든 문장 한 줄 고정 */
 @media (min-width:1001px){
   h1,.goal p,.strip b,.strip small,dl.facts dd,dl.facts dd small,ul.plain li>span,.check small,.check strong,
@@ -449,15 +458,30 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
   </header>
 
   <nav role="tablist" aria-label="안내 메뉴">
-    <button role="tab" id="t-about" aria-controls="about" aria-selected="true">과정 안내</button>
+    <button role="tab" id="t-opening" aria-controls="opening" aria-selected="true">오프닝</button>
+    <button role="tab" id="t-about" aria-controls="about" aria-selected="false">과정 안내</button>
     <button role="tab" id="t-schedule" aria-controls="schedule" aria-selected="false">시간표</button>
     <button role="tab" id="t-prep" aria-controls="prep" aria-selected="false">준비사항</button>
     <button role="tab" id="t-place" aria-controls="place" aria-selected="false">오시는 길</button>
   </nav>
 
   <main>
+    <!-- 오프닝 -->
+    <section class="panel" id="opening" role="tabpanel" aria-labelledby="t-opening">
+      <div class="op">
+        <div class="op-stage">
+          <video id="opVideo" src="opening.mp4" poster="opening-poster.jpg" muted playsinline preload="metadata" controls></video>
+          <button type="button" class="op-sound" id="opSound" aria-pressed="false">🔇 소리 켜기</button>
+        </div>
+        <div class="op-bar">
+          <span class="op-cap">2026 경력/전문계약 입사자 리텐션 과정 · 11.19(목) ~ 20(금)</span>
+          <button type="button" class="op-next" data-goto="about">과정 안내 보기 <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
     <!-- 과정 안내 -->
-    <section class="panel" id="about" role="tabpanel" aria-labelledby="t-about">
+    <section class="panel" id="about" role="tabpanel" aria-labelledby="t-about" hidden>
       <div class="overview">
         <div class="card goals">
           <h2>🎯 교육목표</h2>
@@ -829,6 +853,8 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
     tabs.forEach(function(b){var on=b.getAttribute("aria-controls")===id;b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1;
       document.getElementById(b.getAttribute("aria-controls")).hidden=!on; if(on&&focus)b.focus();});
     try{localStorage.setItem("rt-tab",id);}catch(e){}
+    var v=document.getElementById("opVideo");
+    if(v){ if(id==="opening"){ var pr=v.play(); if(pr&&pr.catch)pr.catch(function(){}); } else { v.pause(); } }
   }
   tabs.forEach(function(b,i){
     b.addEventListener("click",function(){select(b.getAttribute("aria-controls"));});
@@ -840,7 +866,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
   var start=(location.hash||"").slice(1), saved=null;
   try{saved=localStorage.getItem("rt-tab");}catch(e){}
   var ids=tabs.map(function(b){return b.getAttribute("aria-controls");});
-  select(ids.indexOf(start)>=0?start:(ids.indexOf(saved)>=0?saved:"about"));
+  select(ids.indexOf(start)>=0?start:"opening");
   [].forEach.call(document.querySelectorAll("[data-goto]"),function(b){
     b.addEventListener("click",function(){ select(b.dataset.goto,true); window.scrollTo(0,0); });
   });
@@ -961,6 +987,14 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
       html+='<div class="fm-item"><div class="fm-what">'+what.innerHTML+'</div>'+sess.innerHTML+'</div>';
     });
     if(open)html+='</section>'; out.innerHTML=html;
+  })();
+
+  // ---- 오프닝 소리 ----
+  (function(){
+    var v=document.getElementById("opVideo"), b=document.getElementById("opSound"); if(!v||!b)return;
+    function sync(){ b.textContent=v.muted?"🔇 소리 켜기":"🔊 소리 끄기"; b.setAttribute("aria-pressed",String(!v.muted)); }
+    b.addEventListener("click",function(){ v.muted=!v.muted; if(!v.muted&&v.paused){var p=v.play(); if(p&&p.catch)p.catch(function(){});} sync(); });
+    v.addEventListener("volumechange",sync);
   })();
 
   // ---- 모바일 일차 전환 ----
