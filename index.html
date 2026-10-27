@@ -194,6 +194,16 @@ table.flow td.what span{color:var(--fg)}
 .cell.short{flex-direction:row;gap:10px}
 .cell[data-title]{position:relative;cursor:help;transition:transform .15s,box-shadow .15s}
 .cell[data-title]:hover,.cell[data-title].on,.cell[data-title]:focus-visible{transform:translateY(-1px);box-shadow:0 4px 12px rgb(20 30 50 / .12);outline:none}
+.cell .grp{position:absolute;top:5px;left:6px;font-style:normal;font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.grp-all{color:#fff;background:#5a3fb0}
+.grp-ktng{color:#fff;background:var(--brand)}
+:root[data-theme="dark"] .grp-ktng{color:#16171a}
+.cell.short .grp{position:static}
+.tt-note .grp-in{color:var(--brand-ink);font-weight:700}
+.split{position:relative;align-self:start;height:0;z-index:3;pointer-events:none}
+.split::before{content:"";position:absolute;left:-4px;right:-4px;top:-3px;border-top:2.5px dashed var(--brand)}
+.split span{position:absolute;left:50%;top:-3px;transform:translate(-50%,-50%);background:var(--brand);color:#fff;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}
+:root[data-theme="dark"] .split span{color:#16171a}
 .cell .att{position:absolute;top:5px;right:6px;display:inline-flex;align-items:center;gap:3px;font-style:normal;font-size:11px;font-weight:700;
   color:#fff;background:var(--accent);border-radius:999px;padding:1px 7px 1px 5px;white-space:nowrap}
 .cell.short .att{position:static}
@@ -772,6 +782,7 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
   function kstDateKey(d){return new Date(d.getTime()+9*3600e3).toISOString().slice(0,10);}
   function kstMinutes(d){var k=new Date(d.getTime()+9*3600e3);return k.getUTCHours()*60+k.getUTCMinutes();}
   function toMin(t){var p=t.split(":");return +p[0]*60+ +p[1];}
+  function grp(d,t){ if(d!==1)return ''; return toMin(t)<toMin('16:00')?'all':'ktng'; }
   function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
   function pad(h){return (h<10?"0":"")+h+":00";}
 
@@ -790,9 +801,10 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
       DAYS[d].forEach(function(s){
         var r0=row(s[0]), r1=row(s[1]); for(var i=r0;i<r1;i++)used[i]=1;
         var live=today===dateOf[d]&&nowMin>=toMin(s[0])&&nowMin<toMin(s[1]);
-        var body=[s[0]+' – '+s[1]+(s[4]?' · '+s[4]:'')]; if(s[5])body.push(s[5]); if(s[6])body.push('출결 체크: '+s[6]+' 고용24 앱');
+        var g=grp(d,s[0]); var body=[s[0]+' – '+s[1]+(s[4]?' · '+s[4]:'')]; if(g)body.push(g==='all'?'KT&G · KGC 통합 운영':'KT&G 별도 운영'); if(s[5])body.push(s[5]); if(s[6])body.push('출결 체크: '+s[6]+' 고용24 앱');
         html+='<div class="cell c-'+s[3]+' d'+d+(r1-r0<=1?' short':'')+(live?' now':'')+'" tabindex="0" style="grid-column:'+(d+1)+';grid-row:'+r0+' / '+r1+'"'+
           ' data-title="'+esc(s[2]).replace(/"/g,'&quot;')+'" data-body="'+esc(body.join('|')).replace(/"/g,'&quot;')+'">'+
+          (g?'<i class="grp grp-'+g+'">'+(g==='all'?'KT&amp;G·KGC 통합':'KT&amp;G 별도')+'</i>':'')+
           (s[6]?'<i class="att"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M5 12l4 4 10-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>출결 '+s[6]+'</i>':'')+
           '<b>'+esc(s[2])+'</b><span>'+s[0]+' – '+s[1]+(s[4]?' · '+esc(s[4]):'')+'</span>'+(live?'<em class="live">● 진행 중</em>':'')+'</div>';
       });
@@ -806,11 +818,12 @@ footer{font-size:12px;color:var(--muted);display:flex;justify-content:space-betw
         r=e;
       }
     });
+    html+='<div class="split" style="grid-column:2;grid-row:'+row("16:00")+'"><span>16:00부터 KT&amp;G 별도 운영</span></div>';
     html+='<div class="lunch" style="grid-column:2 / 4;grid-row:'+row("12:00")+' / '+row("13:00")+'">'+
       '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 2v8a2 2 0 0 0 2 2v10M5 2v6M9 2v6M17 2c-2 0-3 2-3 5s1 5 3 5v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
       '<b>중식</b><span>12:00 – 13:00</span></div>';
     html+='<div class="tt-note" style="grid-column:1 / 4;grid-row:'+row(pad(END_H))+'"><span class="nl">NOTE</span>'+
-      '<span><b class="att-in">고용24 출결 체크 4회</b> 1일차 10:00 전·18:00 후, 2일차 08:00 전·15:00 후 · 세션에 마우스를 올리면 상세 안내</span></div>';
+      '<span><b class="att-in">고용24 출결 체크 4회</b> 1일차 10:00 전·18:00 후, 2일차 08:00 전·15:00 후 · <b class="grp-in">1일차 16:00까지 KT&amp;G·KGC 통합, 16:00부터 KT&amp;G 별도 운영</b></span></div>';
     html+='<div class="tip tt-tip" id="ttTip" role="tooltip" hidden><b></b><span></span></div>';
     var tt=document.getElementById("tt"); tt.innerHTML=html;
 
